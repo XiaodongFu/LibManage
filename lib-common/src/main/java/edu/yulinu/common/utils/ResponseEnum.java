@@ -1,0 +1,54 @@
+package edu.yulinu.common.utils;
+
+import java.util.Objects;
+
+/**
+ * @program: libmanage
+ * @description:
+ * @author: Xiaodong
+ * @date: 2020-04-07 20:09
+ **/
+public enum ResponseEnum {
+
+    SUCCESS_RESPONSE(true,"response success","1000"),
+    SERVER_ERROR(false,"unknow exception","1001")
+
+//    每个异常后面需要"，"   最后一个是"；"
+    ;
+
+    private String message;
+    private String code;
+    private Boolean isSuccess;
+
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    ResponseEnum(Boolean isSuccess,String message,String code){
+        this.code=code;
+        this.isSuccess=isSuccess;
+        this.message=message;
+    }
+
+    public static ResponseEnum getByCode(String code) {
+        if(Objects.isNull(code)) {
+            return SERVER_ERROR;
+        }
+        for (ResponseEnum response : values()) {
+            if(response.getCode().equals(code)) {
+                return response;
+            }
+        }
+        return SERVER_ERROR;
+    }
+
+
+}
