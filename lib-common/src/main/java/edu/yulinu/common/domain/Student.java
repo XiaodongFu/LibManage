@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @program: libmanage
@@ -23,8 +23,12 @@ import javax.validation.constraints.NotNull;
 
 public class Student {
     @Id
-    private Integer id;
-    private String name;
-    private String stuNo;
-    private String phone;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String stuId;//标示学生唯一id
+    private String stuGender;//性别
+    private String stuName;
+    private String stuNo;//学号
+    private String stuPhone;//手机号
+    private String stuPermission;//权限级别
+    private LocalDate stuCreateDate;//注册时间
 }

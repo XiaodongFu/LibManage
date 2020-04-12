@@ -1,8 +1,6 @@
-import edu.yulinu.Libmanage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -12,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @date: 2020-03-29 15:58
  **/
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Libmanage.class)
+//@SpringBootTest(classes = Libmanage.class)
 public class TestStuController {
 
 
