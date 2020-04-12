@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="course_resource")
-public class ClassResource {
+public class CourseResource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseId;
