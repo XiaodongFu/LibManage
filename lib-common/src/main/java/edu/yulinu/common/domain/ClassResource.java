@@ -21,7 +21,7 @@ import java.time.LocalDate;
 public class ClassResource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String courseId;
+    private Integer courseId;
     private String courseName;
     private String teaName;
     private String teaPhone;

@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * @program: libmanage
@@ -24,7 +22,7 @@ import java.time.LocalDateTime;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String stuId;//标示学生唯一id
+    private Integer stuId;//标示学生唯一id
     private String stuGender;//性别
     private String stuName;
     private String stuNo;//学号

@@ -22,7 +22,7 @@ import java.time.LocalDate;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String teaId;
+    private Integer teaId;
     private String teaGender;
     private String teaName;
     private String teaPhone;
