@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author: Xiaodong
  * @date: 2020-03-29 12:27
  **/
-public interface StuDao extends JpaRepository <Student,String>{
+public interface StuDao extends JpaRepository <Student,Integer>{
 
 }

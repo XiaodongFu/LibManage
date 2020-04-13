@@ -20,7 +20,6 @@ public class StuService {
     StuDao stuDao;
 
     public List<Student> findAll(){
-        int i=1/0;
         return stuDao.findAll();
     }
 }

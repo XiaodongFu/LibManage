@@ -16,6 +16,12 @@
             <artifactId>lib-student</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.yulinu</groupId>
+            <artifactId>lib-teacher</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 

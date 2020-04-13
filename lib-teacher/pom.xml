@@ -10,6 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>lib-teacher</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.yulinu</groupId>
+            <artifactId>lib-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>
