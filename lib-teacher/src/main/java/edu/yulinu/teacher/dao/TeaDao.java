@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date: 2020-04-12 16:20
  **/
 public interface TeaDao extends JpaRepository<Teacher,Integer>{
+    @Override
+    <S extends Teacher> S save(S s);
 }

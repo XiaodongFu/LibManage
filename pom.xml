@@ -10,6 +10,7 @@
         <module>lib-history</module>
         <module>lib-common</module>
         <module>lib-web</module>
+        <module>lib-course</module>
     </modules>
 
     <parent>
@@ -29,6 +30,13 @@
     </properties>
 
     <dependencies>
+
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -66,17 +74,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-
-            </resource>
-        </resources>
     </build>
 
 </project>

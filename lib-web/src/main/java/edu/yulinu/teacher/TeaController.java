@@ -1,14 +1,15 @@
 package edu.yulinu.teacher;
 
+import edu.yulinu.bean.CourseStatusRequest;
 import edu.yulinu.common.BaseController;
 import edu.yulinu.common.domain.CourseResource;
+import edu.yulinu.common.domain.Student;
+import edu.yulinu.common.domain.Teacher;
 import edu.yulinu.common.utils.ResponseWarp;
-import edu.yulinu.teacher.service.CourseService;
+import edu.yulinu.course.service.CourseService;
+import edu.yulinu.teacher.service.TeaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -24,6 +25,8 @@ public class TeaController extends BaseController {
 
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private TeaService teaService;
 
     @PostMapping("/course/create")
     public ResponseWarp createCourse(@RequestBody CourseResource courseResource){
@@ -42,8 +45,17 @@ public class TeaController extends BaseController {
     }
 
     @PostMapping("/course/list")
-    public ResponseWarp listCourse(@RequestBody CourseResource courseResource){
+    public ResponseWarp listCourse(@RequestParam("page")Integer page,@RequestParam("size")Integer size){
+        return success(courseService.findAll(page, size));
+    }
 
-        return success(courseService.createCourse(courseResource));
+    @PostMapping("/course/release")
+    public ResponseWarp courseRelease(@RequestBody CourseStatusRequest req){
+        return success(courseService.setStatus(req.getStatus(),req.getCourseId()));
+    }
+
+    @PostMapping("/add")
+    public ResponseWarp add(@RequestBody Teacher t){
+        return success(teaService.addTeacher(t));
     }
 }

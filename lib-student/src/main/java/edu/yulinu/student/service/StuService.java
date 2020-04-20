@@ -4,6 +4,7 @@ import edu.yulinu.common.domain.Student;
 import edu.yulinu.student.dao.StuDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,11 @@ public class StuService {
     StuDao stuDao;
 
     public List<Student> findAll(){
-        return stuDao.findAll();
+        return (List<Student>) stuDao.findAll();
+    }
+
+    @Transactional
+    public Student addStudent(Student s){
+        return stuDao.save(s);
     }
 }

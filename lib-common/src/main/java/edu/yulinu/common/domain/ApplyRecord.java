@@ -29,6 +29,7 @@ public class ApplyRecord {
     private String record;
     private LocalDate applyTime;
     private String courseName;
+    private String isApprove;//批准
 
 
 }

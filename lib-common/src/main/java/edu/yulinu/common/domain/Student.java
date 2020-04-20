@@ -25,6 +25,7 @@ public class Student {
     private Integer stuId;//标示学生唯一id
     private String stuGender;//性别
     private String stuName;
+    private String password;
     private String stuNo;//学号
     private String stuPhone;//手机号
     private String stuPermission;//权限级别

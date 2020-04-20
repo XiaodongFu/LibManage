@@ -25,6 +25,7 @@ public class Teacher {
     private Integer teaId;
     private String teaGender;
     private String teaName;
+    private String password;
     private String teaPhone;
     private String teaPermission;
     private LocalDate teaCreateDate;

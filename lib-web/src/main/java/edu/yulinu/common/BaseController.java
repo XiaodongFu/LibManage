@@ -27,6 +27,10 @@ public class BaseController<V> {
         ResponseEnum fail = ResponseEnum.getByCode(code);
         return new ResponseWarp(fail.isSuccess(),null,fail.getCode(),fail.getMessage());
     }
+    public static ResponseWarp fail(String code,String valueErro){
+        ResponseEnum fail = ResponseEnum.getByCode(code);
+        return new ResponseWarp(fail.isSuccess(),valueErro,fail.getCode(),fail.getMessage());
+    }
 
 //    统一异常处理
     @ExceptionHandler

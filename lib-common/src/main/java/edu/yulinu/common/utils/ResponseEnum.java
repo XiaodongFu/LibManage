@@ -11,8 +11,9 @@ import java.util.Objects;
 public enum ResponseEnum {
 
     SUCCESS_RESPONSE(true,"response success","1000"),
-    SERVER_ERROR(false,"unknow exception","1001")
-
+    SERVER_ERROR(false,"unknow exception","1001"),
+    USERNAME_ERROR(false,"your username is incorrect","1002"),
+    PASSWORD_ERROR(false,"your password is incorrect","1003")
 //    每个异常后面需要"，"   最后一个是"；"
     ;
 
