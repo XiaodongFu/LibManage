@@ -25,7 +25,6 @@ public class UserService {
     public UserBean findByName(String userName) {
         Student byStuName = stuDao.findByStuName(userName);
         Teacher byTeaName = teaDao.findByTeaName(userName);
-        System.out.println(byStuName);
         if(byStuName!=null){
             return new UserBean(byStuName.getStuId(),byStuName.getPassword(),byStuName.getStuName(),byStuName.getStuPermission());
         }else if(byTeaName!=null){
