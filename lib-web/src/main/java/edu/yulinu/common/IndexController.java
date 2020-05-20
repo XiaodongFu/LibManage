@@ -1,6 +1,7 @@
 package edu.yulinu.common;
 
 import edu.yulinu.bean.UserAndPasswordRequest;
+import edu.yulinu.common.domain.UserBean;
 import edu.yulinu.common.utils.ResponseWarp;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -26,11 +27,22 @@ public class IndexController extends BaseController{
 
         try{
             SecurityUtils.getSubject().login(usernamePasswordToken);
-            return success("login success");
+            UserBean u = (UserBean) SecurityUtils.getSubject().getPrincipal();
+            return success(u);
         }catch (UnknownAccountException e){
             return fail("1002",e.getMessage());
         }catch (IncorrectCredentialsException e){
             return fail("1003",e.getMessage());
         }
+    }
+
+    @RequestMapping("/toLogin")
+    public ResponseWarp tologin(){
+        return fail("1004");
+    }
+
+    @RequestMapping("/toAuth")
+    public ResponseWarp toAuth(){
+        return fail("1005");
     }
 }

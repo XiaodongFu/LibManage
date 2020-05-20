@@ -8,14 +8,13 @@ import javax.validation.constraints.NotNull;
  * @program: libmanage
  * @description:
  * @author: Xiaodong
- * @date: 2020-04-15 22:58
+ * @date: 2020-05-05 19:25
  **/
 @Data
-public class CourseApplyRequest {
+public class ScoringRequest {
     @NotNull
-    private String courseId;
-
-    private String stuId;
-    private String teaId;
+    private Integer applyId;
+    @NotNull
+    private Integer score;
 
 }

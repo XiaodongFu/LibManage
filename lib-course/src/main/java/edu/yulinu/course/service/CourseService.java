@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * @program: libmanage
  * @description:
@@ -20,7 +22,7 @@ public class CourseService {
     private CourseDao courseDao;
     public String createCourse(CourseResource courseResource){
         CourseResource save = courseDao.save(courseResource);
-        return save!=null?"true":"false";
+        return save!=null?"成功创建课程 success":"创建失败";
     }
 
     /***
@@ -36,4 +38,21 @@ public class CourseService {
     public Object setStatus(String status,Integer id) {
         return courseDao.setStatus(status,id);
     }
+
+
+//        修改课程学生可选状态
+    @Transactional
+    public String changeStatus(Integer courseId){
+        Optional<CourseResource> byId = courseDao.findById(courseId);
+        if(byId.isPresent()){
+            CourseResource courseResource = byId.get();
+            courseResource.setStatus("open");
+            courseDao.save(courseResource);
+            return "状态翠盖成功";
+        }
+        return "课程不存在";
+    }
+
+
+
 }

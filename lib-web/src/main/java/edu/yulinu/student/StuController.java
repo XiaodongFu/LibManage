@@ -1,8 +1,10 @@
 package edu.yulinu.student;
 
+import edu.yulinu.apply.service.ApplyService;
 import edu.yulinu.bean.UserAndPasswordRequest;
 import edu.yulinu.common.BaseController;
 import edu.yulinu.common.domain.Student;
+import edu.yulinu.common.domain.UserBean;
 import edu.yulinu.common.utils.ResponseWarp;
 import edu.yulinu.course.service.CourseService;
 import edu.yulinu.student.service.StuService;
@@ -10,7 +12,6 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 
 /**
  * @program: libmanage
@@ -26,6 +27,8 @@ public class StuController extends BaseController {
     StuService stuService;
     @Autowired
     CourseService courseService;
+    @Autowired
+    ApplyService applyService;
 
     @PostMapping("/course/list")
     public ResponseWarp listCourse(@RequestParam("page")Integer page, @RequestParam("size")Integer size){
@@ -34,13 +37,17 @@ public class StuController extends BaseController {
 
     @PostMapping("/course/apply")
     public String applyCourse(@RequestBody Integer courseId){
-        UserAndPasswordRequest user = (UserAndPasswordRequest) SecurityUtils.getSubject().getPrincipal();
+        UserBean user = (UserBean) SecurityUtils.getSubject().getPrincipal();
+        applyService.applyCourse(courseId,user.getId());
         return "string";
     }
 
     @PostMapping("/add")
     public ResponseWarp add(@RequestBody Student s){
-        s.setStuCreateDate(LocalDate.now());
+
+        //TODO 重复用户名认证   电话
+
+        //TODO 注册用户 修改密码
         return success(stuService.addStudent(s));
     }
 }

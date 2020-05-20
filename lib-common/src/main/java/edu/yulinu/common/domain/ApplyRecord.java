@@ -1,6 +1,7 @@
 package edu.yulinu.common.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
 @Table(name="apply_record")
 public class ApplyRecord {
@@ -23,12 +25,14 @@ public class ApplyRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer applyId;
     private String stuId;
+    private String stuNo;
     private String teaId;
     private String teaName;
     private String stuName;
-    private String record;
+    private Integer record;
     private LocalDate applyTime;
     private String courseName;
+    private Integer courseId;
     private String isApprove;//批准
 
 

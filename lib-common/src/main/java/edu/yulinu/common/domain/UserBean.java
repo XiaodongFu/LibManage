@@ -1,9 +1,9 @@
 package edu.yulinu.common.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @program: libmanage
@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserBean {
+    private Integer id;
     private String password;
     private String userName;
+    private String permission;
 }

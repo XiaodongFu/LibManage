@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -26,6 +27,8 @@ public class StuService {
 
     @Transactional
     public Student addStudent(Student s){
+        s.setStuCreateDate(LocalDate.now());
+        s.setStuPermission("guest");
         return stuDao.save(s);
     }
 }

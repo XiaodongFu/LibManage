@@ -25,10 +25,18 @@ public class ShiroConfig {
 
 //        设置过滤器
         HashMap<String, String> filterMap = new LinkedHashMap<>();
+
+//        认证拦截
         filterMap.put("/teacher/course/*","authc");
         filterMap.put("/student/*","anon");
+
+//        授权拦截
+        filterMap.put("/teacher/course/*","perms[admin]");
+
+        factoryBean.setUnauthorizedUrl("/common/toAuth");
+        factoryBean.setLoginUrl("/common/toLogin");
         factoryBean.setFilterChainDefinitionMap(filterMap);
-        factoryBean.setLoginUrl("/student/a");
+
         return factoryBean;
     }
 //    securityManage    用户管理

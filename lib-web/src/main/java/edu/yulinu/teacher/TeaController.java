@@ -1,13 +1,15 @@
 package edu.yulinu.teacher;
 
 import edu.yulinu.bean.CourseStatusRequest;
+import edu.yulinu.bean.ScoringRequest;
 import edu.yulinu.common.BaseController;
 import edu.yulinu.common.domain.CourseResource;
-import edu.yulinu.common.domain.Student;
 import edu.yulinu.common.domain.Teacher;
+import edu.yulinu.common.domain.UserBean;
 import edu.yulinu.common.utils.ResponseWarp;
 import edu.yulinu.course.service.CourseService;
 import edu.yulinu.teacher.service.TeaService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,9 +38,12 @@ public class TeaController extends BaseController {
         courseResource.setStatus("closed");
         courseResource.setTeaName("李肇星");
         courseResource.setTeaPhone("15891561121");
+//        TODO      当前用户为教师时获取教师信息   当用户不为教师时返回错误
+
+        courseResource.setTeaId("");
         courseResource.setStudentLimit(100);
         courseResource.setLearnerAmount(0);
-        courseResource.setAvgRecord(80);
+        courseResource.setAvgRecord(80.0);
         courseResource.setMiniScore(60);
         courseResource.setHighestScore(100);
         return success(courseService.createCourse(courseResource));
@@ -53,9 +58,18 @@ public class TeaController extends BaseController {
     public ResponseWarp courseRelease(@RequestBody CourseStatusRequest req){
         return success(courseService.setStatus(req.getStatus(),req.getCourseId()));
     }
-
+//  重复用户名认证
     @PostMapping("/add")
     public ResponseWarp add(@RequestBody Teacher t){
+        //TODO 重复用户名  电话
         return success(teaService.addTeacher(t));
+    }
+
+
+    @PostMapping("/scoring")
+    public ResponseWarp scoring(@RequestBody ScoringRequest s){
+        //TODO 重复用户名  电话
+        UserBean user = (UserBean) SecurityUtils.getSubject().getPrincipal();
+        return success(teaService.scoring(s.getApplyId(),s.getScore(),user));
     }
 }

@@ -17,19 +17,20 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="course_resource")
+@Table(name = "course_resource", indexes = {@Index(columnList = "status"), @Index(columnList = "teaName")})
 public class CourseResource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseId;
     private String courseName;
     private String teaName;
+    private String teaId;
     private String teaPhone;
     private Integer studentLimit;//学习上限人数
     private LocalDate createTime;
     private LocalDate overDueTime;
     private Integer learnerAmount;//学习次数
-    private Integer avgRecord;
+    private Double avgRecord;
     private Integer miniScore;
     private Integer highestScore;
     private String status;//是否关闭  可学习状态
