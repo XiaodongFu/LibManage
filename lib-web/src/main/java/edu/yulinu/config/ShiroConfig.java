@@ -31,7 +31,7 @@ public class ShiroConfig {
         filterMap.put("/student/*","anon");
 
 //        授权拦截
-        filterMap.put("/teacher/course/*","perms[admin]");
+        filterMap.put("/teacher/course/*","perms[teacher]");
 
         factoryBean.setUnauthorizedUrl("/common/toAuth");
         factoryBean.setLoginUrl("/common/toLogin");
