@@ -30,11 +30,11 @@ public class CourseService {
       * @return
      */
     public Page<CourseResource> findAll(Integer page,Integer size) {
-        return courseDao.findByStatus("open", PageRequest.of(page,size));
+        return courseDao.findByStatus("open", PageRequest.of(page, size));
     }
 
-    Page<CourseResource> findByTeaId(Integer teaId){
-        return courseDao.findByTeaId(teaId);
+    public Page<CourseResource> findByTeaId(Integer page,Integer size, String teaId){
+        return courseDao.findByTeaId(teaId, PageRequest.of(page, size));
     }
 
     /***

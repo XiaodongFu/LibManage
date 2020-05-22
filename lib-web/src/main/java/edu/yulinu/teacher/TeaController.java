@@ -52,8 +52,10 @@ public class TeaController extends BaseController {
     }
 
     @PostMapping("/course/list")
-    public ResponseWarp listCourse(@RequestParam("page")Integer page,@RequestParam("size")Integer size){
-        return success(courseService.findAll(page, size));
+    public ResponseWarp listCourse(@RequestParam("page")Integer page,@RequestParam("size")Integer size,@RequestParam("teaId")Integer teaId){
+        UserBean principal = (UserBean) SecurityUtils.getSubject().getPrincipal();
+        if(null==principal){principal=UserBean.builder().id(teaId).build();}
+        return success(courseService.findByTeaId(page, size,principal.getId().toString()));
     }
 
     @PostMapping("/course/release")
