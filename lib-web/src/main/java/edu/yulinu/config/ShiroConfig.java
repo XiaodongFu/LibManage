@@ -27,7 +27,7 @@ public class ShiroConfig {
         HashMap<String, String> filterMap = new LinkedHashMap<>();
 
 //        认证拦截
-        filterMap.put("/teacher/course/*","authc");
+        filterMap.put("/teacher/course/*","anon");
         filterMap.put("/student/*","anon");
 
 //        授权拦截

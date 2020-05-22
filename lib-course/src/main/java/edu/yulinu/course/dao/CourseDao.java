@@ -20,4 +20,5 @@ public interface CourseDao extends PagingAndSortingRepository<CourseResource,Int
     @Query("update CourseResource c set c.status=?1 where c.courseId=?2")
     Integer setStatus(String status, Integer courseId);
 
+    Page<CourseResource> findByTeaId(Integer teaId);
 }

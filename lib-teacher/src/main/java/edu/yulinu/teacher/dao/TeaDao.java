@@ -14,4 +14,5 @@ public interface TeaDao extends PagingAndSortingRepository<Teacher,Integer> {
     <S extends Teacher> S save(S s);
 
     Teacher findByTeaName(String userName);
+
 }

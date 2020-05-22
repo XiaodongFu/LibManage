@@ -36,11 +36,13 @@ public class TeaController extends BaseController {
         courseResource.setCreateTime(LocalDate.now());
         courseResource.setOverDueTime(LocalDate.parse("2020-10-12"));
         courseResource.setStatus("closed");
-        courseResource.setTeaName("李肇星");
-        courseResource.setTeaPhone("15891561121");
+        UserBean principal = (UserBean) SecurityUtils.getSubject().getPrincipal();
+        courseResource.setTeaName(principal.getUserName());
+
+        courseResource.setTeaPhone(teaService.findById(principal.getId()).getTeaPhone());
 //        TODO      当前用户为教师时获取教师信息   当用户不为教师时返回错误
 
-        courseResource.setTeaId("");
+        courseResource.setTeaId(principal.getId().toString());
         courseResource.setStudentLimit(100);
         courseResource.setLearnerAmount(0);
         courseResource.setAvgRecord(80.0);
@@ -61,7 +63,8 @@ public class TeaController extends BaseController {
 //  重复用户名认证
     @PostMapping("/add")
     public ResponseWarp add(@RequestBody Teacher t){
-        //TODO 重复用户名  电话
+        Teacher teacher = teaService.findByName(t.getTeaName());
+        if (null==teacher){fail("1006");};
         return success(teaService.addTeacher(t));
     }
 

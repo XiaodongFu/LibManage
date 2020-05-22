@@ -1,7 +1,6 @@
 package edu.yulinu.student;
 
 import edu.yulinu.apply.service.ApplyService;
-import edu.yulinu.bean.UserAndPasswordRequest;
 import edu.yulinu.common.BaseController;
 import edu.yulinu.common.domain.Student;
 import edu.yulinu.common.domain.UserBean;
@@ -45,8 +44,8 @@ public class StuController extends BaseController {
     @PostMapping("/add")
     public ResponseWarp add(@RequestBody Student s){
 
-        //TODO 重复用户名认证   电话
-
+        Student student = stuService.findByName(s.getStuName());
+        if (null==student){fail("1006");};
         //TODO 注册用户 修改密码
         return success(stuService.addStudent(s));
     }

@@ -33,7 +33,15 @@ public class CourseService {
         return courseDao.findByStatus("open", PageRequest.of(page,size));
     }
 
+    Page<CourseResource> findByTeaId(Integer teaId){
+        return courseDao.findByTeaId(teaId);
+    }
 
+    /***
+     * @param status
+     * @param id
+     * @return
+     */
     @Transactional
     public Object setStatus(String status,Integer id) {
         return courseDao.setStatus(status,id);
@@ -48,7 +56,7 @@ public class CourseService {
             CourseResource courseResource = byId.get();
             courseResource.setStatus("open");
             courseDao.save(courseResource);
-            return "状态翠盖成功";
+            return "状态修盖成功";
         }
         return "课程不存在";
     }

@@ -7,13 +7,14 @@ spring:
     url: jdbc:mysql://120.26.173.108:33306/yulinu?characterEncoding=utf-8
     username: root
     password: yulinu_123
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 10
 
   jpa:
     database: mysql
     show-sql: true
-#    hibernate:
-#      ddl-auto: update
+    hibernate:
+      ddl-auto: update
 server:
   port: 8088
-

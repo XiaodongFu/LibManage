@@ -34,7 +34,7 @@ public class TeaService {
     @Transactional
     public Teacher addTeacher(Teacher t){
         t.setTeaCreateDate(LocalDate.now());
-        t.setTeaPermission("admin");
+        t.setTeaPermission("teacher");
         return teaDao.save(t);
     }
 
@@ -90,5 +90,16 @@ public class TeaService {
         return false;
     }
 
-
+//findByTeaName;
+    public Teacher findById(Integer id){
+        Optional<Teacher> byId = teaDao.findById(id);
+        if(byId.isPresent()){
+            return byId.get();
+        }
+        return null;
+    }
+//根据名称查老师
+    public Teacher findByName(String teaName) {
+        return teaDao.findByTeaName(teaName);
+    }
 }

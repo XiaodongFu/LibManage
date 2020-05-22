@@ -31,4 +31,8 @@ public class StuService {
         s.setStuPermission("guest");
         return stuDao.save(s);
     }
+
+    public Student findByName(String stuName) {
+        return stuDao.findByStuName(stuName);
+    }
 }
