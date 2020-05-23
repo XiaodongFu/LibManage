@@ -29,6 +29,9 @@ public class CourseResource {
     private Integer studentLimit;//学习上限人数
     private LocalDate createTime;
     private LocalDate overDueTime;
+    private String courseTime;  //上课时间
+    private String courseAddress;  //上课地点
+    private Float scoreCredit;
     private Integer learnerAmount;//学习次数
     private Double avgRecord;
     private Integer miniScore;

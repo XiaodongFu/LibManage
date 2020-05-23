@@ -32,29 +32,26 @@ public class TeaController extends BaseController {
 
     @PostMapping("/course/create")
     public ResponseWarp createCourse(@RequestBody CourseResource courseResource){
-        courseResource.setCourseName("数据挖掘");
         courseResource.setCreateTime(LocalDate.now());
-        courseResource.setOverDueTime(LocalDate.parse("2020-10-12"));
-        courseResource.setStatus("closed");
+        courseResource.setStatus("open");
         UserBean principal = (UserBean) SecurityUtils.getSubject().getPrincipal();
-        courseResource.setTeaName(principal.getUserName());
+        if(null==principal){ principal=UserBean.builder().id(Integer.parseInt(courseResource.getTeaId())).build();}
+        Teacher byId = teaService.findById(principal.getId());
+        if(null==byId){return fail("1005");};
+        courseResource.setTeaName(byId.getTeaName());
+        courseResource.setTeaPhone(byId.getTeaPhone());
 
-        courseResource.setTeaPhone(teaService.findById(principal.getId()).getTeaPhone());
-//        TODO      当前用户为教师时获取教师信息   当用户不为教师时返回错误
-
-        courseResource.setTeaId(principal.getId().toString());
-        courseResource.setStudentLimit(100);
         courseResource.setLearnerAmount(0);
-        courseResource.setAvgRecord(80.0);
-        courseResource.setMiniScore(60);
-        courseResource.setHighestScore(100);
+        courseResource.setAvgRecord(0.0);
+        courseResource.setMiniScore(1000);
+        courseResource.setHighestScore(0);
         return success(courseService.createCourse(courseResource));
     }
 
     @PostMapping("/course/list")
     public ResponseWarp listCourse(@RequestParam("page")Integer page,@RequestParam("size")Integer size,@RequestParam("teaId")Integer teaId){
         UserBean principal = (UserBean) SecurityUtils.getSubject().getPrincipal();
-        if(null==principal){principal=UserBean.builder().id(teaId).build();}
+          if(null==principal){principal=UserBean.builder().id(teaId).build();}
         return success(courseService.findByTeaId(page, size,principal.getId().toString()));
     }
 
@@ -66,7 +63,7 @@ public class TeaController extends BaseController {
     @PostMapping("/add")
     public ResponseWarp add(@RequestBody Teacher t){
         Teacher teacher = teaService.findByName(t.getTeaName());
-        if (null==teacher){fail("1006");};
+        if (null!=teacher){fail("1006");};
         return success(teaService.addTeacher(t));
     }
 

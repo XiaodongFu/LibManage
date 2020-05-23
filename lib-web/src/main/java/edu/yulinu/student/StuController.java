@@ -45,7 +45,7 @@ public class StuController extends BaseController {
     public ResponseWarp add(@RequestBody Student s){
 
         Student student = stuService.findByName(s.getStuName());
-        if (null==student){fail("1006");};
+        if (null!=student){fail("1006");};
         //TODO 注册用户 修改密码
         return success(stuService.addStudent(s));
     }
